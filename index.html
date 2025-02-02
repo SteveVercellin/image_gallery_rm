@@ -11,51 +11,22 @@
     <script defer src="index.js"></script>
 </head>
 
-<body>
+<body mv-app="gallery" mv-storage="https://github.com/SteveVercellin/image_gallery_rm">
     <header>
         <h1>Carpet Gallery</h1>
+        <h1><a href="http://julesmuck.com"><img src="http://julesmuck.com/wp-content/uploads/2016/04/mucklogoBLCK.png" alt="Jules Muck" class="logo" /></a></h1>
+
     </header>
-    <main>
-        <section class="gallery" mv-app="gallery" mv-storage="local">
-            <div property="images" mv-multiple>
-                <img src="imgs\CRAFT - CRF - 5005 - POLIP ANTRASIT-DETAIL.tif" alt="Carpet Image" property="filename">
+    <main>          
+            <div mv-list>
+                <a property="painting" typeof="Painting" mv-list-item mv-attribute="none">
+                    <img property="image" />
+                    <p property="name" mv-default="[readable(to(filename(image), '.'))]"></p>
+                </a>
             </div>
-            <button mv-action="mv-add(images)">Add Image</button>
-        </section>
+            
+            <footer>All art belongs to the awesome <a href="http://julesmuck.com">Jules Muck</a>, used here with permission.</footer>
     </main>
-    <script>
-        async function convertImagesToWebP() {
-            const images = document.querySelectorAll('.gallery img');
-            for (const img of images) {
-                const response = await fetch(img.src);
-                const blob = await response.blob();
-                const webpBlob = await convertToWebP(blob);
-                const webpUrl = URL.createObjectURL(webpBlob);
-                img.src = webpUrl;
-            }
-        }
-
-        function convertToWebP(blob) {
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    const imgElement = document.createElement('img');
-                    imgElement.src = event.target.result;
-                    imgElement.onload = function() {
-                        const canvas = document.createElement('canvas');
-                        canvas.width = imgElement.width;
-                        canvas.height = imgElement.height;
-                        const ctx = canvas.getContext('2d');
-                        ctx.drawImage(imgElement, 0, 0);
-                        canvas.toBlob(resolve, 'image/webp');
-                    };
-                };
-                reader.onerror = reject;
-                reader.readAsDataURL(blob);
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', convertImagesToWebP);
-    </script>
+  
 </body>
 </html>
