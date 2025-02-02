@@ -1,45 +1,115 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and header styles */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
-    margin: 0;
+    color: #333;
+}
+
+header {
+    text-align: center;
     padding: 20px;
+    background-color: #333;
+    color: white;
 }
 
-.gallery {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+h1 {
+    font-size: 2rem;
+    margin: 0;
 }
 
-h2 {
-    text-align: center;
+/* Main Gallery Grid */
+main.gallery {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* 6 images per row on large screens */
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-#fileInput {
-    margin-bottom: 20px;
-}
-
-#image-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
+/* Styling for image container */
 .image-container {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+.image-container:hover {
+    transform: scale(1.05); /* Zoom effect */
+}
+
+.image-container a {
+    display: block;
     text-align: center;
-    margin-bottom: 20px;
+    text-decoration: none;
+    color: #333;
 }
 
 .image-container img {
-    width: 80%;
-    max-width: 600px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    margin: 10px 0;
+    width: 100%; /* Ensure images are responsive */
+    height: auto;
+    display: block; /* Remove any spacing beneath images */
+    border-bottom: 1px solid #ddd;
 }
 
-.image-name {
-    font-size: 16px;
-    color: #333;
-    margin-top: 5px;
+.image-container p {
+    padding: 10px;
+    font-size: 1rem;
+}
+
+/* Footer Styling */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    margin-top: 20px;
+    clear: both;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* Mobile Support: Ensure gallery is responsive */
+@media (max-width: 1024px) {
+    /* Tablet view (1 image per row) */
+    main.gallery {
+        grid-template-columns: repeat(2, 1fr); /* 2 images per row on tablets */
+    }
+}
+
+@media (max-width: 768px) {
+    /* Mobile view (1 image per row) */
+    main.gallery {
+        grid-template-columns: 1fr; /* 1 image per row on mobile */
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    footer {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.2rem;
+    }
+
+    .image-container p {
+        font-size: 0.9rem;
+    }
 }
