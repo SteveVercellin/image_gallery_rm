@@ -27,7 +27,7 @@ h1 {
 /* Main Gallery Grid */
 main.gallery {
     display: grid;
-    grid-template-columns: repeat(6, 1fr); /* 6 images per row on large screens */
+    grid-template-columns: repeat(4, 1fr); /* 4 images per row on large screens */
     gap: 20px;
     padding: 20px;
     max-width: 1200px;
