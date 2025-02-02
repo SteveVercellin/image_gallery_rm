@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carpet Gallery</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mavo/0.2.4/mavo.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mavo/0.2.4/mavo.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/primer/16.0.0-0/css/primer.min.css">
+    <script defer src="index.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Carpet Gallery</h1>
+    </header>
+    <main>
+        <section class="gallery" mv-app="gallery" mv-storage="local">
+            <div property="images" mv-multiple>
+                <img src="imgs\CRAFT - CRF - 5005 - POLIP ANTRASIT-DETAIL.tif" alt="Carpet Image" property="filename">
+            </div>
+            <button mv-action="mv-add(images)">Add Image</button>
+        </section>
+    </main>
+    <script>
+        async function convertImagesToWebP() {
+            const images = document.querySelectorAll('.gallery img');
+            for (const img of images) {
+                const response = await fetch(img.src);
+                const blob = await response.blob();
+                const webpBlob = await convertToWebP(blob);
+                const webpUrl = URL.createObjectURL(webpBlob);
+                img.src = webpUrl;
+            }
+        }
+
+        function convertToWebP(blob) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const imgElement = document.createElement('img');
+                    imgElement.src = event.target.result;
+                    imgElement.onload = function() {
+                        const canvas = document.createElement('canvas');
+                        canvas.width = imgElement.width;
+                        canvas.height = imgElement.height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(imgElement, 0, 0);
+                        canvas.toBlob(resolve, 'image/webp');
+                    };
+                };
+                reader.onerror = reject;
+                reader.readAsDataURL(blob);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', convertImagesToWebP);
+    </script>
+</body>
+</html>
