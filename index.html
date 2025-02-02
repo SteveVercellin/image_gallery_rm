@@ -27,15 +27,15 @@
         }
 
         .image-container {
-            background-color: #fff;
+            background-color: #fafafa;
             border: 1px solid #ddd;
-            border-radius: 8px;
+            border-radius: 18px;
             overflow: hidden;
             transition: transform 0.3s ease-in-out;
         }
 
         .image-container:hover {
-            transform: scale(1.05); /* Zoom effect on hover */
+            transform: scale(1.1); /* Zoom effect on hover */
         }
 
         .image-container img {
@@ -87,7 +87,7 @@
         <main class="gallery">
             <div v-for="image in images" :key="image.name" class="image-container">
                 <img :src="image.raw_url" :alt="image.name">
-                <p>{{ image.name }}</p>
+                <p>{{ image.name.replace(/\.[^/.]+$/, "") }}</p>
             </div>
         </main>
 
