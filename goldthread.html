@@ -4,22 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gold Thread Collection Gallery</title>
-    
-    <!-- Primer CSS (via CDN) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@primer/css@5.0.0/dist/primer.css">
-    
-    <!-- Vue.js (via CDN) -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-    
     <style>
-        /* Custom styles for gallery */
         body {
             font-family: Arial, sans-serif;
         }
 
         .gallery {
             display: grid;
-            grid-template-columns: repeat(4, 1fr); /* Default 6 columns */
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
             gap: 20px;
             padding: 20px;
             max-width: 1200px;
@@ -32,22 +26,30 @@
             border-radius: 18px;
             overflow: hidden;
             transition: transform 0.3s ease-in-out;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
         }
 
         .image-container:hover {
-            transform: scale(1.1); /* Zoom effect on hover */
+            transform: scale(1.05); /* Slightly less aggressive zoom */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* More pronounced shadow on hover */
         }
 
         .image-container img {
             width: 100%;
             height: auto;
             display: block;
+            object-fit: cover; /* Prevents image distortion */
         }
 
         .image-container p {
             padding: 10px;
             text-align: center;
             font-size: 14px;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px 0; /* Add some vertical padding */
         }
 
         footer {
@@ -61,19 +63,6 @@
         footer a {
             color: #fff;
             text-decoration: underline;
-        }
-
-        /* Mobile and tablet responsiveness */
-        @media (max-width: 1024px) {
-            .gallery {
-                grid-template-columns: repeat(2, 1fr); /* 2 images per row on tablets */
-            }
-        }
-
-        @media (max-width: 768px) {
-            .gallery {
-                grid-template-columns: 1fr; /* 1 image per row on mobile */
-            }
         }
     </style>
 </head>
@@ -103,25 +92,33 @@
                 images: []
             },
             mounted() {
-                const repoOwner = "SteveVercellin";  // Change this to your GitHub username
-                const repoName = "image_gallery_rm"; // Change this to your repo name
-                const branch = "main";               // Change this if your branch is not 'main'
-                const folderPath = "gold_thread/top";           // Folder containing images
+                const repoOwner = "SteveVercellin";
+                const repoName = "image_gallery_rm";
+                const branch = "main";
+                const folderPath = "gold_thread/top";
 
-                // GitHub API URL to get contents of the imgs folder
                 const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${folderPath}?ref=${branch}`;
 
                 fetch(apiUrl)
-                    .then(response => response.json())
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`); // Handle errors
+                        }
+                        return response.json();
+                    })
                     .then(data => {
                         this.images = data
-                            .filter(file => file.name.match(/\.(webp|tif|jpg|jpeg|png)$/i)) // Only images
+                            .filter(file => file.name.match(/\.(webp|tif|jpg|jpeg|png|gif)$/i)) // Added gif
                             .map(file => ({
                                 name: file.name,
                                 raw_url: `https://raw.githubusercontent.com/${repoOwner}/${repoName}/${branch}/${folderPath}/${file.name}`
                             }));
                     })
-                    .catch(error => console.error("Error fetching images:", error));
+                    .catch(error => {
+                        console.error("Error fetching images:", error);
+                        // Optionally display an error message to the user
+                        alert("Error loading images. Please try again later.");
+                    });
             }
         });
     </script>
