@@ -7,63 +7,59 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@primer/css@5.0.0/dist/primer.css">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
+  body {
+    font-family: Arial, sans-serif;
+}
 
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
-            gap: 20px;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-        .image-container {
-            background-color: #fafafa;
-            border: 1px solid #ddd;
-            border-radius: 18px;
-            overflow: hidden;
-            transition: transform 0.3s ease-in-out;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
-        }
+.image-container {
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
 
-        .image-container:hover {
-            transform: scale(1.05); /* Slightly less aggressive zoom */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* More pronounced shadow on hover */
-        }
+.image-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
 
-        .image-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover; /* Prevents image distortion */
-        }
+.image-container img {
+    width: 100%;
+    height: 250px; /* Adjust height as needed */
+    display: block;
+    object-fit: cover; /* or object-fit: contain; */
+}
 
-        .image-container p {
-            padding: 10px;
-            text-align: center;
-            font-size: 14px;
-        }
+.image-container p {
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+}
 
-        header {
-            text-align: center;
-            padding: 20px 0; /* Add some vertical padding */
-        }
+header {
+    text-align: center;
+    padding: 20px 0;
+}
 
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #333;
-            color: white;
-            margin-top: 20px;
-        }
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    margin-top: 20px;
+}
 
-        footer a {
-            color: #fff;
-            text-decoration: underline;
-        }
+footer a {
+    color: #fff;
+    text-decoration: underline;
+}
     </style>
 </head>
 <body>
