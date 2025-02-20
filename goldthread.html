@@ -115,7 +115,7 @@
                     .then(response => response.json())
                     .then(data => {
                         this.images = data
-                            .filter(file => file.name.match(/\.(webp|jpg|jpeg|png)$/i)) // Only images
+                            .filter(file => file.name.match(/\.(webp|tif|jpg|jpeg|png)$/i)) // Only images
                             .map(file => ({
                                 name: file.name,
                                 raw_url: `https://raw.githubusercontent.com/${repoOwner}/${repoName}/${branch}/${folderPath}/${file.name}`
