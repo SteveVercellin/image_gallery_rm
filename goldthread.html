@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gold Thread Collection Gallery</title>
+    
+    <!-- Primer CSS (via CDN) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@primer/css@5.0.0/dist/primer.css">
+    
+    <!-- Vue.js (via CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    
+    <style>
+        /* Custom styles for gallery */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* Default 6 columns */
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .image-container {
+            background-color: #fafafa;
+            border: 1px solid #ddd;
+            border-radius: 18px;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .image-container:hover {
+            transform: scale(1.1); /* Zoom effect on hover */
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .image-container p {
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            margin-top: 20px;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        /* Mobile and tablet responsiveness */
+        @media (max-width: 1024px) {
+            .gallery {
+                grid-template-columns: repeat(2, 1fr); /* 2 images per row on tablets */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: 1fr; /* 1 image per row on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <header>
+            <h1>GOLD THREAD COLLECTION</h1>
+        </header>
+
+        <main class="gallery">
+            <div v-for="image in images" :key="image.name" class="image-container">
+                <img :src="image.raw_url" :alt="image.name">
+                <p>{{ image.name.replace(/\.[^/.]+$/, "") }}</p>
+            </div>
+        </main>
+
+        <footer>
+            All images belong to <a href="http://rmline.com">RMLINE</a>, All Rights Reserved.
+        </footer>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                images: []
+            },
+            mounted() {
+                const repoOwner = "SteveVercellin";  // Change this to your GitHub username
+                const repoName = "image_gallery_rm"; // Change this to your repo name
+                const branch = "main";               // Change this if your branch is not 'main'
+                const folderPath = "gold_thread/top";           // Folder containing images
+
+                // GitHub API URL to get contents of the imgs folder
+                const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${folderPath}?ref=${branch}`;
+
+                fetch(apiUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        this.images = data
+                            .filter(file => file.name.match(/\.(webp|jpg|jpeg|png)$/i)) // Only images
+                            .map(file => ({
+                                name: file.name,
+                                raw_url: `https://raw.githubusercontent.com/${repoOwner}/${repoName}/${branch}/${folderPath}/${file.name}`
+                            }));
+                    })
+                    .catch(error => console.error("Error fetching images:", error));
+            }
+        });
+    </script>
+
+</body>
+</html>
