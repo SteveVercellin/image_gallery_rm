@@ -13,13 +13,13 @@ body {
 
 .image-container {
     overflow: hidden;
-    transition: transform 0.3s ease-in-out;
     position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition for transform and box-shadow */
 }
 
 .image-container:hover {
     transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* More prominent shadow */
 }
 
 .image-container img {
@@ -27,32 +27,38 @@ body {
     height: 250px;
     display: block;
     object-fit: cover;
-    transition: height 0.3s ease-in-out;
+    transition: transform 0.5s ease, filter 0.5s ease, height 0.5s ease; /* Transition for image properties */
 }
 
 .image-container:hover img {
     height: auto;
     object-fit: contain; /* or object-fit: cover */
+    transform: scale(1.1); /* Slight zoom on image itself */
+    filter: brightness(1.1); /* Slightly brighten the image */
 }
 
 .image-container p {
     padding: 10px;
     text-align: center;
     font-size: 14px;
-    position: absolute; /* Keep absolute positioning */
+    position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    background-color: rgba(0, 0, 0, 0.5);
     color: white;
-    /* Remove opacity transition and set opacity to 1 */
-    opacity: 1; /* Always visible */
+    opacity: 1;
+    transform: translateY(100%); /* Initially hidden below */
+    transition: transform 0.5s ease; /* Transition for caption */
 }
 
-/* Style for the non-hover state (optional) */
+.image-container:hover p {
+    transform: translateY(0); /* Slide up on hover */
+}
+
 .image-container:not(:hover) p {
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    color: white;
+    background-color: transparent;
+    color: black;
 }
 
 header {
