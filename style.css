@@ -14,12 +14,12 @@ body {
 .image-container {
     overflow: hidden;
     position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition for transform and box-shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .image-container:hover {
     transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* More prominent shadow */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .image-container img {
@@ -27,39 +27,32 @@ body {
     height: 250px;
     display: block;
     object-fit: cover;
-    transition: transform 0.5s ease, filter 0.5s ease, height 0.5s ease; /* Transition for image properties */
+    transition: transform 0.5s ease, filter 0.5s ease, height 0.5s ease;
 }
 
 .image-container:hover img {
     height: auto;
-    object-fit: contain; /* or object-fit: cover */
-    transform: scale(1.1); /* Slight zoom on image itself */
-    filter: brightness(1.1); /* Slightly brighten the image */
+    object-fit: contain;
+    transform: scale(1.1);
+    filter: brightness(1.1);
 }
 
 .image-container p {
     padding: 10px;
     text-align: center;
     font-size: 14px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    opacity: 1;
-    transform: translateY(100%); /* Initially hidden below */
-    transition: transform 0.5s ease; /* Transition for caption */
+    /* Remove absolute positioning */
+    /* Caption will now flow naturally below the image */
+    background-color: transparent; /* No background */
+    color: black; /* Default text color */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth color transition */
 }
 
 .image-container:hover p {
-    transform: translateY(0); /* Slide up on hover */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background on hover */
+    color: white; /* Text color on hover */
 }
 
-.image-container:not(:hover) p {
-    background-color: transparent;
-    color: black;
-}
 
 header {
     text-align: center;
