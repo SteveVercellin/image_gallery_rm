@@ -26,13 +26,11 @@ body {
     width: 100%;
     height: 250px;
     display: block;
-    object-fit: cover;
-    transition: transform 0.5s ease, filter 0.5s ease, height 0.5s ease;
+    object-fit: cover; /* Keep cover on hover too */
+    transition: transform 0.5s ease, filter 0.5s ease;
 }
 
 .image-container:hover img {
-    height: auto;
-    object-fit: contain;
     transform: scale(1.1);
     filter: brightness(1.1);
 }
@@ -41,18 +39,9 @@ body {
     padding: 10px;
     text-align: center;
     font-size: 14px;
-    /* Remove absolute positioning */
-    /* Caption will now flow naturally below the image */
-    background-color: transparent; /* No background */
-    color: black; /* Default text color */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth color transition */
+    background-color: transparent;
+    color: black;
 }
-
-.image-container:hover p {
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background on hover */
-    color: white; /* Text color on hover */
-}
-
 
 header {
     text-align: center;
