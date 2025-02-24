@@ -10,8 +10,6 @@
     <link rel="stylesheet" href="style.css"> 
     <!-- Vue.js (via CDN) -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/css/lightgallery.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/js/lightgallery.min.js"></script>
     
 </head>
 <body>
@@ -23,8 +21,8 @@
 
         <main class="gallery">
             <div v-for="image in images" :key="image.name" class="image-container">
-                <img :src="image.raw_url" :alt="image.name">
                 <p>{{ image.name.replace(/\.[^/.]+$/, "") }}</p>
+                <img :src="image.raw_url" :alt="image.name">
             </div>
         </main>
 

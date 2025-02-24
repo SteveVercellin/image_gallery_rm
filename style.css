@@ -15,33 +15,48 @@ body {
     overflow: hidden;
     position: relative;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    aspect-ratio: 0.75; /* Adjust as needed for your rug aspect ratio */
 }
 
 .image-container:hover {
+    height: 250px;
     transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .image-container img {
     width: 100%;
-    height: 100%; /* Fill the container */
+    height: 450px;
     display: block;
-    object-fit: contain; /* Show the entire image */
-    transition: transform 0.5s ease;
+    object-fit: contain;
+    transition: transform 0.5s ease, filter 0.5s ease, height 0.5s ease;
 }
 
 .image-container:hover img {
-    transform: scale(1.2); /* Adjust zoom level */
+    height: 250px;
+    object-fit: cover;
+    transform: scale(1.15);
 }
 
 .image-container p {
-    padding: 10px;
     text-align: center;
     font-size: 14px;
     background-color: transparent;
     color: black;
+    z-index: 999999;
 }
+
+.image-container:hover p {
+    margin-bottom: 40px;
+    padding: 8px;
+    text-align: center;
+    font-size: 14px;
+    background-color: transparent;
+    color: black;
+    z-index: 999999;
+}
+
 
 header {
     text-align: center;
