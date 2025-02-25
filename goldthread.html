@@ -18,7 +18,7 @@
 
         <main class="gallery">
             <div v-for="image in images" :key="image.name" class="image-container">
-                <p>{{ image.name.replace(/\.[^/.]+$/, "") }}</p>
+                <p>{{ image.name.replace(/-TOP\.[^/.]+$/, "").replace(/\.[^/.]+$/, "") }}</p>
                 <img :src="image.raw_url" :alt="image.name">
             </div>
         </main>
