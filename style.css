@@ -18,7 +18,7 @@ body {
 }
 
 .image-container:hover {
-    height: 250px;
+    height: 300px;
     transform: scale(1.05);
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 8px;
@@ -34,7 +34,7 @@ body {
 }
 
 .image-container:hover img {
-    height: 250px;
+    height: auto;
     object-fit: cover;
     transform: scale(1.15);
 }
