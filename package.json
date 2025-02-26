@@ -1,5 +1,13 @@
 {
+  "name": "image_gallery_rm",
+  "version": "1.0.0",
+  "description": "...",
+  "type": "module",
   "dependencies": {
-    "sharp": "^0.33.5"
-  }
+    "@tensorflow/tfjs-node": "^4.22.0",
+    "@upscalerjs/esrgan-thick": "^1.0.0-beta.16",
+    "sharp": "^0.33.5",
+    "upscaler": "^1.0.0-beta.19"
+  },
+  "type": "module"
 }
