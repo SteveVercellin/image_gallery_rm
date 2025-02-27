@@ -1,4 +1,4 @@
-const scaleFactor = 8; // Declare and initialize scaleFactor here (global scope)
+const scaleFactor = 200; // Declare and initialize scaleFactor here (global scope)
 
 async function upscaleWebp(filePath, scaleFactor) {
     try {
