@@ -53,78 +53,83 @@
   <div class="intro-page">
     <h1>LoomX Collections</h1>
     <div class="collection-grid">
-      <div class="collection-item">
-        <a href="cotton_art.html">
-          <img src="cotton_art/details/CTA-01.webp" alt="Cotton Art" class="collection-image" />
-          <h2>Cotton Art</h2>
-        </a>
-      </div>
-      <div class="collection-item">
-        <a href="goldthread.html">
-          <img src="gold_thread/details/GLT-01.webp" alt="Gold Thread" class="collection-image" />
-          <h2>Gold Thread</h2>
-        </a>
-      </div>
-      <div class="collection-item">
-        <a href="mavera.html">
-          <img src="mavera/details/HALI_1_DETAY.webp" alt="Mavera" class="collection-image" />
-          <h2>Mavera</h2>
-        </a>
-      </div>
-      <div class="collection-item">
-        <a href="pearl.html">
-          <img src="pearl/details/PRL-3906.webp" alt="Pearl" class="collection-image" />
-          <h2>Pearl</h2>
-        </a>
-      </div>
-      <div class="collection-item">
-        <a href="craft.html">
-          <img src="craft/details/CRAFT - CRF - 9905 - POLIP ANTRASIT-2.webp" alt="Craft" class="collection-image" />
-          <h2>Craft</h2>
-        </a>
-      </div>
-      <div class="collection-item">
-        <a href="gravity.html">
-          <img src="gravity/details/GRV-06.webp" alt="Gravity" class="collection-image" />
-          <h2>Gravity</h2>
-        </a>
-      </div>
-      <div class="collection-item">
-        <a href="multi.html">
-          <img src="multi/details/MLT-010601.jpg" alt="Multi" class="collection-image" />
-          <h2>Multi</h2>
-        </a>
-      </div>
-      <div class="collection-item">
-        <a href="rivian.html">
-          <img src="rivian/details/RVN-04.webp" alt="Rivian" class="collection-image" />
-          <h2>Rivian</h2>
-        </a>
-      </div>
-      <div class="collection-item">
-        <a href="timeless.html">
-          <img src="timeless/details/TML-02.webp" alt="Timeless" class="collection-image" />
-          <h2>Timeless</h2>
-        </a>
-      </div>
-      <div class="collection-item">
-        <a href="delhi.html">
-          <img src="delhi/details/DL01-JUT.webp" alt="Delhi" class="collection-image" />
-          <h2>Delhi</h2>
-        </a>
-      </div>
-        <div class="collection-item">
-        <a href="loopin.html">
-          <img src="loopin/details/LP-041.webp" alt="Loopin" class="collection-image" />
-          <h2>Loopin</h2>
-        </a>
-      </div>
-        <div class="collection-item">
-        <a href="softweave.html">
-          <img src="softweave/details/SFW-010105.webp" alt="Softweave" class="collection-image" />
-          <h2>Softweave</h2>
-        </a>
-      </div>
+      <script>
+        const collections = [
+          {
+            name: "Cotton Art",
+            link: "cotton_art.html",
+            image: "cotton_art/details/CTA-01.webp"
+          },
+          {
+            name: "Craft",
+            link: "craft.html",
+            image: "craft/details/CRAFT - CRF - 9905 - POLIP ANTRASIT-2.webp"
+          },
+          {
+            name: "Delhi",
+            link: "delhi.html",
+            image: "delhi/details/DL01-JUT.webp"
+          },
+          {
+            name: "Gold Thread",
+            link: "goldthread.html",
+            image: "gold_thread/details/GLT-01.webp"
+          },
+          {
+            name: "Gravity",
+            link: "gravity.html",
+            image: "gravity/details/GRV-06.webp"
+          },
+          {
+            name: "Loopin",
+            link: "loopin.html",
+            image: "loopin/details/LP-041.webp"
+          },
+          {
+            name: "Mavera",
+            link: "mavera.html",
+            image: "mavera/details/HALI_1_DETAY.webp"
+          },
+          {
+            name: "Multi",
+            link: "multi.html",
+            image: "multi/details/MLT-010601.jpg"
+          },
+          {
+            name: "Pearl",
+            link: "pearl.html",
+            image: "pearl/details/PRL-3906.webp"
+          },
+          {
+            name: "Rivian",
+            link: "rivian.html",
+            image: "rivian/details/RVN-04.webp"
+          },
+          {
+            name: "Softweave",
+            link: "softweave.html",
+            image: "softweave/details/SFW-010105.webp"
+          },
+          {
+            name: "Timeless",
+            link: "timeless.html",
+            image: "timeless/details/TML-02.webp"
+          }
+        ];
+
+        collections.sort((a, b) => a.name.localeCompare(b.name));
+
+        collections.forEach(collection => {
+          document.write(`
+            <div class="collection-item">
+              <a href="${collection.link}">
+                <img src="${collection.image}" alt="${collection.name}" class="collection-image" />
+                <h2>${collection.name}</h2>
+              </a>
+            </div>
+          `);
+        });
+      </script>
     </div>
   </div>
 
