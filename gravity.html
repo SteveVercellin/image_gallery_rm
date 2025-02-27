@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gravity Collection Gallery</title>
+    
+    <!-- Primer CSS (via CDN) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@primer/css@5.0.0/dist/primer.css">
+    <link rel="stylesheet" href="style.css"> 
+    <!-- Vue.js (via CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    
+</head>
+<body>
+
+    <div id="app">
+        <header>
+            <h1>GRAVITY COLLECTION</h1>
+        </header>
+
+        <main class="gallery">
+            <div v-for="image in images" :key="image.name" class="image-container">
+                <p>{{ image.name.replace(/-TOP\.[^/.]+$/, "").replace(/\.[^/.]+$/, "") }}</p>
+                <img :src="image.raw_url" :alt="image.name">
+            </div>
+        </main>
+
+        <footer>
+            <a href="http://rmline.com">RMLINE</a>, All Rights Reserved.
+        </footer>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                images: []
+            },
+            mounted() {
+                const repoOwner = "SteveVercellin";  // Change this to your GitHub username
+                const repoName = "image_gallery_rm"; // Change this to your repo name
+                const branch = "main";               // Change this if your branch is not 'main'
+                const folderPath = "gravity/top";           // Folder containing images
+
+                const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${folderPath}?ref=${branch}`;
+
+fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => {
+        this.images = data
+            .filter(file => file.name.match(/\.webp$/i)) // Filter only .webp images
+            .map(file => ({
+                name: file.name,
+                raw_url: `https://raw.githubusercontent.com/${repoOwner}/${repoName}/${branch}/${folderPath}/${file.name}`
+            }));
+    })
+    .catch(error => console.error("Error fetching images:", error));
+}
+    });
+</script>
+</body>
+</html>
