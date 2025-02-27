@@ -1,126 +1,132 @@
-<template>
-    <div class="intro-page">
-      <h1>My Collections</h1>
-      <div class="collection-grid">
-        <div
-          v-for="collection in collections"
-          :key="collection.name"
-          class="collection-item"
-        >
-          <a :href="collection.link">
-            <img :src="collection.image" :alt="collection.name" class="collection-image" />
-            <h2>{{ collection.name }}</h2>
-          </a>
-        </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LoomX Collections</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .intro-page {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .collection-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 20px auto;
+    }
+
+    .collection-item {
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 5px;
+      transition: transform 0.3s ease;
+    }
+
+    .collection-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .collection-image {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .collection-item a {
+      text-decoration: none;
+      color: inherit;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="intro-page">
+    <h1>LoomX Collections</h1>
+    <div class="collection-grid">
+      <div class="collection-item">
+        <a href="cotton_art.html">
+          <img src="cotton_art/details/CTA-01.webp" alt="Cotton Art" class="collection-image" />
+          <h2>Cotton Art</h2>
+        </a>
+      </div>
+      <div class="collection-item">
+        <a href="goldthread.html">
+          <img src="gold_thread/details/GLT-01.webp" alt="Gold Thread" class="collection-image" />
+          <h2>Gold Thread</h2>
+        </a>
+      </div>
+      <div class="collection-item">
+        <a href="mavera.html">
+          <img src="mavera/details/HALI_1_DETAY.webp" alt="Mavera" class="collection-image" />
+          <h2>Mavera</h2>
+        </a>
+      </div>
+      <div class="collection-item">
+        <a href="pearl.html">
+          <img src="pearl/details/PRL-3906.webp" alt="Pearl" class="collection-image" />
+          <h2>Pearl</h2>
+        </a>
+      </div>
+      <div class="collection-item">
+        <a href="craft.html">
+          <img src="craft/details/CRAFT - CRF - 9905 - POLIP ANTRASIT-2.webp" alt="Craft" class="collection-image" />
+          <h2>Craft</h2>
+        </a>
+      </div>
+      <div class="collection-item">
+        <a href="gravity.html">
+          <img src="gravity/details/GRV-06.webp" alt="Gravity" class="collection-image" />
+          <h2>Gravity</h2>
+        </a>
+      </div>
+      <div class="collection-item">
+        <a href="multi.html">
+          <img src="multi/details/MLT-010601.jpg" alt="Multi" class="collection-image" />
+          <h2>Multi</h2>
+        </a>
+      </div>
+      <div class="collection-item">
+        <a href="rivian.html">
+          <img src="rivian/details/RVN-04.webp" alt="Rivian" class="collection-image" />
+          <h2>Rivian</h2>
+        </a>
+      </div>
+      <div class="collection-item">
+        <a href="timeless.html">
+          <img src="timeless/details/TML-02.webp" alt="Timeless" class="collection-image" />
+          <h2>Timeless</h2>
+        </a>
+      </div>
+      <div class="collection-item">
+        <a href="delhi.html">
+          <img src="delhi/details/DL01-JUT.webp" alt="Delhi" class="collection-image" />
+          <h2>Delhi</h2>
+        </a>
+      </div>
+        <div class="collection-item">
+        <a href="loopin.html">
+          <img src="loopin/details/LP-041.webp" alt="Loopin" class="collection-image" />
+          <h2>Loopin</h2>
+        </a>
+      </div>
+        <div class="collection-item">
+        <a href="softweave.html">
+          <img src="softweave/details/SFW-010105.webp" alt="Softweave" class="collection-image" />
+          <h2>Softweave</h2>
+        </a>
       </div>
     </div>
-  </template>
-  
-  <script>
-  export default {
-    data() {
-      return {
-        collections: [
-          {
-            name: "Cotton Art",
-            link: "cotton_art.html",
-            image: "cotton_art/example.jpg", // Replace with an actual image
-          },
-          {
-            name: "Gold Thread",
-            link: "goldthread.html",
-            image: "gold_thread/example.jpg", // Replace with an actual image
-          },
-          {
-            name: "Mavera",
-            link: "mavera.html",
-            image: "mavera/example.jpg", // Replace with an actual image
-          },
-          {
-            name: "Pearl",
-            link: "pearl.html",
-            image: "pearl/example.jpg", // Replace with an actual image
-          },
-          {
-            name: "Craft",
-            link: "craft.html",
-            image: "craft/example.jpg", // Replace with an actual image
-          },
-          {
-            name: "Gravity",
-            link: "gravity.html",
-            image: "gravity/example.jpg", // Replace with an actual image
-          },
-          {
-            name: "Multi",
-            link: "multi.html",
-            image: "multi/example.jpg", // Replace with an actual image
-          },
-          {
-            name: "Rivian",
-            link: "rivian.html",
-            image: "rivian/example.jpg", // Replace with an actual image
-          },
-          {
-            name: "Timeless",
-            link: "timeless.html",
-            image: "timeless/example.jpg", // Replace with an actual image
-          },
-          {
-            name: "Delhi",
-            link: "delhi.html",
-            image: "delhi/example.jpg", // Replace with an actual image
-          },
-          {
-            name: "Loopin",
-            link: "loopin.html",
-            image: "loopin/example.jpg",
-          },
-          {
-            name: "Softweave",
-            link: "softweave.html",
-            image: "softweave/example.jpg",
-          }
-        ],
-      };
-    },
-  };
-  </script>
-  
-  <style scoped>
-  .intro-page {
-    text-align: center;
-    padding: 20px;
-  }
-  
-  .collection-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    max-width: 1200px;
-    margin: 20px auto;
-  }
-  
-  .collection-item {
-    border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 5px;
-    transition: transform 0.3s ease;
-  }
-  
-  .collection-item:hover {
-    transform: translateY(-5px);
-  }
-  
-  .collection-image {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin-bottom: 10px;
-  }
-  
-  .collection-item a {
-    text-decoration: none;
-    color: inherit;
-  }
-  </style>
+  </div>
+
+</body>
+</html>
